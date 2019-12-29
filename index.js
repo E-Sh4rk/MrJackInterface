@@ -24,6 +24,9 @@ let game = {
 
 const Honeycomb = require('honeycomb-grid')
 const PIXI = require('pixi.js')
+/*const { InteractionManager } = require('@pixi/interaction')
+PIXI.Renderer.registerPlugin('interaction', InteractionManager)*/
+const { Button } = require('./button')
 
 const CASE_SIZE = 25
 function init() {
@@ -81,17 +84,61 @@ function init() {
         clearGraphics()
 
         // PANEL
+        let button_w = 100;
+        let button_w_small = 40;
+        let button_h = 40;
+
         let text = "TURN " + game.turn.toString() + "\n";
         text += "STATUS: " + game.status + "\n\n";
         text += "REMAINING CHARACTERS:\n"
-        for (let c of game.remchars) {
-            text += c + "\n"
-        }
         let color = 0xbbbbbb;
         text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'left'});
         text.x = panel_x*wr;
-        text.y = oh*hr/2 - text.height/2;
+        text.y = oh*hr/2 - text.height - 2 * button_h;
         panelContainer.addChild(text)
+
+        let character_buttons = [character.SH, character.JW, character.JS, character.IL,
+            character.MS, character.SG, character.WG, character.JB]
+        let button_x = panel_x*wr + button_w_small*wr/2
+        let button_y = text.y + text.height + button_h/2*hr
+        let i = 0
+        for (let c of character_buttons) {
+            let button = new Button({
+                texture: game.remchars.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
+                label: c,
+                width: button_w_small*wr,
+                height: button_h*hr,
+                fontSize: 20,
+                onTap: () => console.log(c)
+            })
+            button.x = button_x + (i % 4)*(button_w_small+10)*wr
+            button.y = button_y + (~~(i/4))*(button_h+10)*hr
+            panelContainer.addChild(button)
+            i++
+        }
+
+        let button2 = new Button({
+            texture: 'button-red.png',
+            label: 'Cancel',
+            width: button_w*wr,
+            height: button_h*hr,
+            fontSize: 20,
+            onTap: () => console.log('Cancel')
+        })
+        button2.x = panel_x*wr + button2.width/2
+        button2.y = oh*hr - button2.height - 25*hr
+        panelContainer.addChild(button2)
+        let button1 = new Button({
+            texture: 'button-green.png',
+            label: 'End turn',
+            width: button_w*wr,
+            height: button_h*hr,
+            fontSize: 20,
+            onTap: () => console.log('End turn')
+        })
+        button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
+        button1.y = oh*hr - button1.height - 25*hr
+        panelContainer.addChild(button1)
 
         // BOARD
         Grid.rectangle({ width: width, height: height }).forEach(hex => {
