@@ -1,0 +1,1441 @@
+{
+              "status": "RUNNING",
+               "board": [
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 6
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 6,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": true,
+                                "lampid": 1,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 6,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": true,
+                                "lampid": 3,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 3
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 5
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 7
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 1
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 2
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 4
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": true,
+                                "lampid": 4,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 6,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 5,
+                             "activated": true,
+                                "lampid": 2,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 2,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 4,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 6,
+                             "activated": true,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 8
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 3,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 1,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          },
+                          {
+                                  "type": 0,
+                             "activated": false,
+                                "lampid": 0,
+                             "character": 0
+                          }
+                        ],
+                "turn": 1,
+            "remchars": [
+                          7,
+                          5,
+                          4,
+                          3
+                        ],
+           "prevchars": [],
+               "wldir": [
+                          1,
+                          1
+                        ],
+                "jack": 4,
+             "shcards": [
+                          1,
+                          2,
+                          3,
+                          5,
+                          6,
+                          7,
+                          8
+                        ],
+             "cstatus": [
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN",
+                          "UNKNOWN"
+                        ],
+            "char_pos": [
+                          [
+                            12,
+                            7
+                          ],
+                          [
+                            8,
+                            9
+                          ],
+                          [
+                            2,
+                            5
+                          ],
+                          [
+                            16,
+                            9
+                          ],
+                          [
+                            10,
+                            5
+                          ],
+                          [
+                            10,
+                            1
+                          ],
+                          [
+                            6,
+                            7
+                          ],
+                          [
+                            8,
+                            13
+                          ]
+                        ],
+            "cops_pos": [
+                          [
+                            17,
+                            2
+                          ],
+                          [
+                            1,
+                            12
+                          ]
+                        ],
+       "anon_lamp_pos": [
+                          [
+                            11,
+                            6
+                          ]
+                        ],
+   "numbered_lamp_pos": [
+                          [
+                            13,
+                            2
+                          ],
+                          [
+                            5,
+                            12
+                          ],
+                          [
+                            4,
+                            3
+                          ],
+                          [
+                            14,
+                            11
+                          ]
+                        ],
+             "lid_pos": [
+                          [
+                            3,
+                            12
+                          ],
+                          [
+                            15,
+                            2
+                          ]
+                        ]
+}
