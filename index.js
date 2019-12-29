@@ -27,12 +27,15 @@ const PIXI = require('pixi.js')
 /*const { InteractionManager } = require('@pixi/interaction')
 PIXI.Renderer.registerPlugin('interaction', InteractionManager)*/
 const { Button } = require('./button')
+var utils = require('./utils');
 
 const CASE_SIZE = 25
 function init() {
 
-    var utils = require('./utils');
-    game = utils.gameConfigFromFile("game.json")
+    function getState() {
+        game = utils.gameConfigFromFile("game.json")
+    }
+    getState()
 
     const app = new PIXI.Application({ transparent: true, resizeTo: window })
     const graphics = new PIXI.Graphics()
@@ -109,7 +112,15 @@ function init() {
                 width: button_w_small*wr,
                 height: button_h*hr,
                 fontSize: 20,
-                onTap: () => console.log(c)
+                onTap: function() {
+                    if (game.remchars.includes(c)) {
+                        let index = game.remchars.indexOf(c);
+                        game.remchars.splice(index, 1);
+                    }
+                    else
+                        game.remchars.push(c)
+                    redraw()
+                }
             })
             button.x = button_x + (i % 4)*(button_w_small+10)*wr
             button.y = button_y + (~~(i/4))*(button_h+10)*hr
@@ -123,7 +134,10 @@ function init() {
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
-            onTap: () => console.log('Cancel')
+            onTap: function() {
+                getState()
+                redraw()
+              }
         })
         button2.x = panel_x*wr + button2.width/2
         button2.y = oh*hr - button2.height - 25*hr
