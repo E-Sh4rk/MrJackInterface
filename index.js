@@ -21,6 +21,8 @@ let game = {
     remchars: [],
     status: status.RUNNING
 }
+let moves = []
+let moveInProgress = null
 
 const Honeycomb = require('honeycomb-grid')
 const PIXI = require('pixi.js')
@@ -34,6 +36,8 @@ function init() {
 
     function getState() {
         game = utils.gameConfigFromFile("game.json")
+        moves = []
+        moveInProgress = null
     }
     getState()
 
@@ -144,11 +148,11 @@ function init() {
         panelContainer.addChild(button2)
         let button1 = new Button({
             texture: 'button-green.png',
-            label: 'End turn',
+            label: 'End move',
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
-            onTap: () => console.log('End turn')
+            onTap: () => console.log('End move')
         })
         button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
         button1.y = oh*hr - button1.height - 25*hr
@@ -161,48 +165,43 @@ function init() {
             const polygon = new PIXI.Polygon(corners)
     
             let m = game.board[hex.y][hex.x]
+            let color = null;
+            let invisible = false;
             switch (m.i) {
                 case item.EMPTY:
-                    graphics.drawPolygon(polygon)
                     break;
                 case item.OBSTACLE:
-                    graphics.beginFill(0x555555)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x555555
                     break;
                 case item.SHAFT_OPENED:
-                    graphics.beginFill(0x578099)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x578099
                     break;
                 case item.SHAFT_CLOSED:
-                    graphics.beginFill(0x112f45)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x112f45
                     break;
                 case item.LIGHT_ON:
-                    graphics.beginFill(0xfaae34)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0xfaae34
                     break;
                 case item.LIGHT_OFF:
-                    graphics.beginFill(0x523c1a)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x523c1a
                     break;
                 case item.EXIT_OPENED:
-                    graphics.beginFill(0x0f943d)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x0f943d
                     break;
                 case item.EXIT_CLOSED:
-                    graphics.beginFill(0x074f20)
-                    graphics.drawPolygon(polygon)
-                    graphics.endFill(); 
+                    color = 0x074f20
                     break;
                 case item.NONE:
+                    invisible = true;
                     break;
                 default:
+            }
+            if (moveInProgress != null && moveInProgress.x == hex.x && moveInProgress.y == hex.y)
+                color = 0xe8db4d
+            if (!invisible) {
+                if (color != null) graphics.beginFill(color)
+                graphics.drawPolygon(polygon)
+                if (color != null) graphics.endFill()
             }
             if (m.c != null || m.it != null) {
                 let text = m.c != null ? m.c : m.it;
@@ -231,6 +230,18 @@ function init() {
             
         })
         
+        // MOVES
+        graphics.lineStyle(2,0xe8db4d)
+        for (let m of moves) {
+            let start = m.start.toPoint().add(m.start.center())
+            let end = m.end.toPoint().add(m.end.center())
+            graphics.moveTo(start.x*wr, start.y*hr)
+            graphics.lineTo(end.x*wr, end.y*hr)
+            graphics.beginFill(0xe8db4d)
+            graphics.drawCircle(end.x*wr, end.y*hr, 5)
+            graphics.endFill()
+        }
+        defaultLineStyle()
     }
     redraw()
 
@@ -244,8 +255,16 @@ function init() {
         let hr = wh/oh
         const hexCoordinates = Grid.pointToHex(offsetX/wr, offsetY/hr)
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
-            let old = game.board[hexCoordinates.y][hexCoordinates.x]
-            game.board[hexCoordinates.y][hexCoordinates.x] = { i : item.OBSTACLE }
+            let elt = game.board[hexCoordinates.y][hexCoordinates.x]
+            if (elt.i != item.NONE) {
+                if (moveInProgress) {
+                    if (moveInProgress.x != hexCoordinates.x || moveInProgress.y != hexCoordinates.y)
+                    moves.push({start:moveInProgress, end:hexCoordinates})
+                    moveInProgress = null
+                }
+                else
+                    moveInProgress = hexCoordinates
+            }
             redraw()
         }
     })
