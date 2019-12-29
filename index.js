@@ -268,6 +268,22 @@ function init() {
             redraw()
         }
     })
+    app.view.addEventListener('contextmenu', function(ev) {
+        ev.preventDefault();
+        let ww = window.innerWidth
+        let wh = window.innerHeight
+        let wr = ww/ow
+        let hr = wh/oh
+        const hexCoordinates = Grid.pointToHex(ev.offsetX/wr, ev.offsetY/hr)
+        if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
+            let elt = game.board[hexCoordinates.y][hexCoordinates.x]
+            if (elt.c == character.JW) {
+                game.jwld = (game.jwld+1) % 6;
+            }
+        }
+        redraw();
+        return false;
+    }, false);
 }
 
 window.onload = init;
