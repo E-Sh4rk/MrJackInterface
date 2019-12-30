@@ -45,28 +45,42 @@ function wldir2jwld(wldir) {
             return 0
     }
 }
-
-function characterFromCode(code) {
-    switch(code) {
+function jwld2wldir(jwld) {
+    switch (jwld) {
         case 0:
-            return null
+            return [-2, 0]
         case 1:
-            return character.SH
+            return [-1, 1]
         case 2:
-            return character.JB
+            return [1, 1]
         case 3:
-            return character.WG
+            return [2, 0]
         case 4:
-            return character.JW
+            return [1, -1]
         case 5:
-            return character.IL
-        case 6:
-            return character.MS
-        case 7:
-            return character.JS
-        case 8:
-            return character.SG
+            return [-1, -1]
+        default:
+            return [-2, 0]
     }
+}
+function graphicPos2solverPos(x, y) {
+    x = x - 1 // Because we start at index 1 for the x-axis
+    y = 2*y
+    if (x%2 == 0) y++
+    return [y, x]
+}
+
+charactersArr = [character.SH, character.JB, character.WG, character.JW, character.IL,
+    character.MS, character.JS, character.SG]
+function characterFromCode(code) {
+    if (code <= 0)
+        return null
+    return charactersArr[code-1]
+}
+function codeFromCharacter(c) {
+    if (c == null)
+        return 0
+    return charactersArr.indexOf(c)+1;
 }
 
 function parseGameConfig(rawdata) {
