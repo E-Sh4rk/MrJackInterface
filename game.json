@@ -6,11 +6,11 @@
   "status": "SELECTING_CHARACTER",
   "shcards": [
     "SHERLOCK_HOLMES",
-    "JOHN_WATSON",
+    "INSPECTOR_LESTRADE",
     "WILLIAM_GULL",
     "JEREMY_BERT",
-    "INSPECTOR_LESTRADE",
     "MISS_STEALTHY",
+    "SERGENT_GOODLEY",
     "JOHN_SMITH"
   ],
   "visibility_mask": [
@@ -1627,13 +1627,13 @@
     "SERGENT_GOODLEY": false
   },
   "remchars": [
-    "JOHN_WATSON",
-    "JEREMY_BERT",
-    "SERGENT_GOODLEY",
-    "JOHN_SMITH"
+    "MISS_STEALTHY",
+    "INSPECTOR_LESTRADE",
+    "SHERLOCK_HOLMES",
+    "JEREMY_BERT"
   ],
   "used_power": false,
-  "jack": "SERGENT_GOODLEY",
+  "jack": "JOHN_WATSON",
   "wldir": [
     1,
     1

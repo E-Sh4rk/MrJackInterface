@@ -27,6 +27,7 @@ let game = {
 let moves = []
 let moveInProgress = null
 let currentMoveType = null
+let jwld = null
 
 let displayVisibility = false
 
@@ -42,17 +43,20 @@ function init() {
 
     utils.spawnSolver()
 
-    function getState() {
-        /*game = utils.gameConfigFromFile("game.json")
+    function resetMoves() {
         moves = []
         moveInProgress = null
-        currentMoveType = null*/
+        currentMoveType = null
+        jwld = null
+        redraw()
+    }
+
+    function getState() {
+        /*game = utils.gameConfigFromFile("game.json")
+        resetMoves()*/
         function callback(g) {
             game = g
-            moves = []
-            moveInProgress = null
-            currentMoveType = null
-            redraw()
+            resetMoves()
         }
         utils.gameConfigFromSolver(callback)
     }
@@ -193,8 +197,7 @@ function init() {
             height: button_h*hr,
             fontSize: 20,
             onTap: function() {
-                getState()
-                redraw()
+                resetMoves()
               }
         })
         button2.x = panel_x*wr + button2.width/2
@@ -278,7 +281,7 @@ function init() {
 
             let r = 3
             if (m.c == character.JW) {
-                let i1 = (game.jwld + 4) % 6
+                let i1 = ((jwld == null ? game.jwld : jwld) + 4) % 6
                 let i2 = (i1 + 1) % 6
                 graphics.lineStyle(0,0)
                 graphics.beginFill(0xff5555)
@@ -352,9 +355,10 @@ function init() {
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
             let elt = game.board[hexCoordinates.y][hexCoordinates.x]
             if (elt.c == character.JW && currentMoveType != null) {
-                game.jwld = (game.jwld+1) % 6;
-                if (moves.length == 0 || moves[moves.length-1].type != move_types.jwld)
-                    moves.push({type:move_types.jwld, start:hexCoordinates, end:hexCoordinates})
+                jwld = jwld == null ? game.jwld : jwld
+                jwld = (jwld+1) % 6;
+                moves = moves.filter(m => m.type != move_types.jwld)
+                moves.push({type:move_types.jwld, start:hexCoordinates, end:hexCoordinates})
             }
             else if (elt.i != item.NONE)
                 displayVisibility = !displayVisibility
