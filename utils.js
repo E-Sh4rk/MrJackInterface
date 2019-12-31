@@ -145,8 +145,14 @@ function parseGameConfig(config) {
         can_power = !config.used_power
         can_move = !config.used_move
     }
+    let can_select_cards = 0
+    if (config.status == "PICKING_JACK" || config.status == "SELECTING_CHARACTER" || config.status == "PICKING_SHERLOCK_CARD")
+        can_select_cards = 1
+    else if (config.status == "PICKING_PLAYABLE_CHARACTERS")
+        can_select_cards = 2
     return { board: board, jwld: wldir2jwld(config.wldir), turn: config.turn, remchars: remchars, prevchars: prevchars, status: config.status,
-        currentchar: characterFromCode(config.selected), used_move: config.used_move, can_power: can_power, can_move: can_move}
+        currentchar: characterFromCode(config.selected), used_move: config.used_move, can_power: can_power, can_move: can_move,
+        can_select_cards: can_select_cards}
 }
 
 function gameConfigFromFile(filename) {

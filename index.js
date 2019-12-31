@@ -22,12 +22,15 @@ let game = {
     currentchar: null,
     status: status.RUNNING,
     can_move: false,
-    can_power: false
+    can_power: false,
+    can_select_cards: 0 // 0: no, 1: one, 2: many
 }
 let moves = []
 let moveInProgress = null
 let currentMoveType = null
 let jwld = null
+let selectedCards = null
+let selectedCard = null
 
 let displayVisibility = false
 
@@ -48,6 +51,8 @@ function init() {
         moveInProgress = null
         currentMoveType = null
         jwld = null
+        selectedCard = game.currentchar
+        selectedCards = game.remchars.slice()
         redraw()
     }
 
@@ -60,7 +65,6 @@ function init() {
         }
         utils.gameConfigFromSolver(callback)
     }
-    getState()
 
     const app = new PIXI.Application({ transparent: true, resizeTo: window })
     const graphics = new PIXI.Graphics()
@@ -165,22 +169,30 @@ function init() {
         i = 0
         for (let c of character_buttons) {
             let button = new Button({
-                texture: game.currentchar == c ? 'button-gold.png' : game.remchars.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
+                texture: selectedCard == c ? 'button-gold.png' : selectedCards.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
                 label: c,
                 width: button_w_small*wr,
                 height: button_h*hr,
                 fontSize: 20,
                 onTap: function() {
-                    if (game.currentchar == c)
-                        game.currentchar = null
-                    else if (game.remchars.includes(c)) {
-                        let index = game.remchars.indexOf(c);
-                        game.remchars.splice(index, 1);
-                        if (game.currentchar == null)
-                            game.currentchar = c;
+                    if (game.can_select_cards > 1) {
+                        if (selectedCard == c)
+                            selectedCard = null
+                        else if (selectedCards.includes(c)) {
+                            if (selectedCard == null)
+                                selectedCard = c;
+                            let index = selectedCards.indexOf(c);
+                            selectedCards.splice(index, 1);
+                        }
+                        else
+                            selectedCards.push(c)
                     }
-                    else
-                        game.remchars.push(c)
+                    else if (game.can_select_cards > 0) {
+                        if (selectedCard == c)
+                            selectedCard = null
+                        else
+                            selectedCard = c
+                    }
                     redraw()
                 }
             })
@@ -320,7 +332,8 @@ function init() {
         }
         defaultLineStyle()
     }
-    redraw()
+    resetMoves()
+    getState()
 
     function resize() { redraw(); }
     window.onresize = resize;

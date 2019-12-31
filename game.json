@@ -1627,10 +1627,10 @@
     "SERGENT_GOODLEY": false
   },
   "remchars": [
-    "MISS_STEALTHY",
+    "JOHN_WATSON",
     "INSPECTOR_LESTRADE",
-    "SHERLOCK_HOLMES",
-    "JEREMY_BERT"
+    "JEREMY_BERT",
+    "JOHN_SMITH"
   ],
   "used_power": false,
   "jack": "JOHN_WATSON",
