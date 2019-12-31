@@ -1,8 +1,8 @@
 
 var { item, character, character_status, status } = require('./defs');
 
-let empty = { i:item.EMPTY, c:null }
-let none = { i:item.NONE, c:null }
+let empty = { i:item.EMPTY, c:null, visible:false }
+let none = { i:item.NONE, c:null, visible:false }
 
 let game = {
     board: [
@@ -26,6 +26,8 @@ let game = {
 }
 let moves = []
 let moveInProgress = null
+
+let displayVisibility = false
 
 const Honeycomb = require('honeycomb-grid')
 const PIXI = require('pixi.js')
@@ -175,34 +177,43 @@ function init() {
             let m = game.board[hex.y][hex.x]
             let color = null;
             let invisible = false;
-            switch (m.i) {
-                case item.EMPTY:
-                    break;
-                case item.OBSTACLE:
-                    color = 0x555555
-                    break;
-                case item.SHAFT_OPENED:
-                    color = 0x578099
-                    break;
-                case item.SHAFT_CLOSED:
-                    color = 0x3c5869
-                    break;
-                case item.LIGHT_ON:
-                    color = 0xfaae34
-                    break;
-                case item.LIGHT_OFF:
-                    color = 0x8f631d
-                    break;
-                case item.EXIT_OPENED:
-                    color = 0x0f943d
-                    break;
-                case item.EXIT_CLOSED:
-                    color = 0x074f20
-                    break;
-                case item.NONE:
-                    invisible = true;
-                    break;
-                default:
+            if (displayVisibility) {
+                if (m.i == item.NONE)
+                    invisible = true
+                else {
+                    color = m.visible ? 0xfaae34 : 0x8f631d
+                }
+            }
+            else {
+                switch (m.i) {
+                    case item.EMPTY:
+                        break;
+                    case item.OBSTACLE:
+                        color = 0x555555
+                        break;
+                    case item.SHAFT_OPENED:
+                        color = 0x578099
+                        break;
+                    case item.SHAFT_CLOSED:
+                        color = 0x3c5869
+                        break;
+                    case item.LIGHT_ON:
+                        color = 0xfaae34
+                        break;
+                    case item.LIGHT_OFF:
+                        color = 0x8f631d
+                        break;
+                    case item.EXIT_OPENED:
+                        color = 0x0f943d
+                        break;
+                    case item.EXIT_CLOSED:
+                        color = 0x074f20
+                        break;
+                    case item.NONE:
+                        invisible = true;
+                        break;
+                    default:
+                }
             }
             if (moveInProgress != null && moveInProgress.x == hex.x && moveInProgress.y == hex.y)
                 color = 0xe8db4d
@@ -213,7 +224,7 @@ function init() {
             }
             if (m.c != null || m.it != null) {
                 let text = m.c != null ? m.c : m.it;
-                let color = m.c != null ? colorForCharacterStatus(m.cs, m.cv) : 0x222222;
+                let color = m.c != null && !displayVisibility ? colorForCharacterStatus(m.cs, m.cv) : 0x222222;
                 text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'center'});
                 text.x = (point.x+hex.width()/2)*wr - text.width/2;
                 text.y = (point.y+hex.height()/2)*hr - text.height/2;
@@ -285,9 +296,10 @@ function init() {
         const hexCoordinates = Grid.pointToHex(ev.offsetX/wr, ev.offsetY/hr)
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
             let elt = game.board[hexCoordinates.y][hexCoordinates.x]
-            if (elt.c == character.JW) {
+            if (elt.c == character.JW)
                 game.jwld = (game.jwld+1) % 6;
-            }
+            else if (elt.i != item.NONE)
+                displayVisibility = !displayVisibility
         }
         redraw();
         return false;

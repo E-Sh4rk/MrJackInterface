@@ -102,31 +102,37 @@ function parseGameConfig(config) {
         matrix.push(line)
     }*/
     let matrix = config.board
-    matrix = matrix[0].map((col, i) => matrix.map(row => row[i]))
+    matrix = matrix[0].map((col, i) => matrix.map(row => row[i])) // Transpose
+    let visibility_mask = config.visibility_mask
+    visibility_mask = visibility_mask[0].map((col, i) => visibility_mask.map(row => row[i])) // Transpose
 
     let board = []
     for (let j = 0; j < ~~(matrix.length/2)+1; j++) {
         let line = [none]
         let l1 = matrix[2*j]
+        let v1 = visibility_mask[2*j]
         let l2 = l1.map((v, i) => mnone)
-        if (matrix[2*j+1] != null)
+        let v2 = v1.map((v, i) => false)
+        if (matrix[2*j+1] != null) {
             l2 = matrix[2*j+1]
+            v2 = visibility_mask[2*j+1]
+        }
         for (let i = 0; i < l1.length; i++) {
             let elt = l1[i]
-            if (elt.type == "INVALID")
+            let visible = v1[i]
+            if (elt.type == "INVALID") {
                 elt = l2[i]
+                visible = v2[i]
+            }
             let item = tile2item(elt.type, elt.activated)
             let character = characterFromCode(elt.character)
             let char_status = character != null ? config.cstatus[elt.character] : null
             let char_visible = character != null ? config.visible[elt.character] : null
             let it = elt.lampid == 0 ? null : elt.lampid.toString()
-            line.push( {i:item, c:character, it:it, cs:char_status, cv:char_visible} )
+            line.push( {i:item, c:character, it:it, cs:char_status, cv:char_visible, visible:visible} )
         }
         board.push(line)
     }
-
-    // Transpose the board
-    //board = board[0].map((col, i) => board.map(row => row[i]))
 
     // Output
     let remchars = config.remchars.map(characterFromCode)
