@@ -63,15 +63,15 @@ function init() {
         textContainer.removeChildren()
         panelContainer.removeChildren()
     }
-    function colorForCharacterStatus(cs) {
+    function colorForCharacterStatus(cs, visible) {
         switch (cs) {
             case character_status.UNKNOWN:
-                return 0xffa0a0
+                return visible ? 0xffa73b : 0x99621f
             case character_status.GUILTY:
-                return 0xff1010
+                return visible ? 0xed2828 : 0x851c1c
             case character_status.INNOCENT_CK:
             case character_status.INNOCENT_HI:
-                return 0x60ff60
+                return visible ? 0x00ab14 : 0x006e0d
         }
     }
 
@@ -205,7 +205,7 @@ function init() {
             }
             if (m.c != null || m.it != null) {
                 let text = m.c != null ? m.c : m.it;
-                let color = m.c != null ? colorForCharacterStatus(m.cs) : 0x222222;
+                let color = m.c != null ? colorForCharacterStatus(m.cs, m.cvisible) : 0x222222;
                 text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'center'});
                 text.x = (point.x+hex.width()/2)*wr - text.width/2;
                 text.y = (point.y+hex.height()/2)*hr - text.height/2;
