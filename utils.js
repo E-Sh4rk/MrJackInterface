@@ -83,9 +83,7 @@ function codeFromCharacter(c) {
     return charactersArr.indexOf(c)+1;
 }
 
-function parseGameConfig(rawdata) {
-    let config = JSON.parse(rawdata)
-
+function parseGameConfig(config) {
     // Give a proper shape to the array, and transpose the resulting matrix
     let matrix = []
     for (let i = 0; i < MATRIX_HEIGHT; i++) {
@@ -128,9 +126,58 @@ function parseGameConfig(rawdata) {
 
 function gameConfigFromFile(filename) {
     let rawdata = fs.readFileSync(filename)
-    return parseGameConfig(rawdata)
+    return parseGameConfig(JSON.parse(rawdata))
+}
+
+// COMMUNICATION
+
+let solver = null
+let answerInProgress = null
+
+function sendCommand(cmd, callback) {
+    if (solver == null || answerInProgress != null)
+        return;
+    answerInProgress = ""
+    solver.stdin.write(cmd + "\n")
+    solver.stdin.flush()
+    solver.stdout.on('data', (data) => {
+        try {
+            answerInProgress += data
+            let json = JSON.parse(answerInProgress)
+            solver.stdout.removeAllListeners('data')
+            callback(json)
+            answerInProgress = null
+        }
+        catch (e) {
+            console.log ("Invalid solver answer. Assuming the answer takes multiple chunks.")
+        }
+    });
+}
+
+const { spawn } = require("child_process");
+
+function spawnSolver() {
+    if (solver != null)
+        return;
+    solver = spawn("solver", [], {stdio: ['pipe', 'pipe', 'pipe']});
+    solver.stdin.setEncoding('utf-8');
+    solver.stdout.setEncoding('utf-8');
+    solver.stderr.setEncoding('utf-8');
+    solver.stderr.on('data', (data) => {
+        alert(`Solver returned an error: ${data}`);
+    });
+    solver.on('close', (code) => {
+        alert(`Solver exited with code ${code}.`);
+        solver = null;
+    });
+}
+
+function gameConfigFromSolver(callback) {
+    sendCommand("state", function (json) { callback(parseGameConfig(json)) })
 }
 
 module.exports = {
-    gameConfigFromFile:gameConfigFromFile
+    gameConfigFromFile:gameConfigFromFile,
+    spawnSolver:spawnSolver,
+    gameConfigFromSolver:gameConfigFromSolver
 }

@@ -19,6 +19,7 @@ let game = {
     turn: 0,
     prevchars: [],
     remchars: [],
+    currentchar: null,
     status: status.RUNNING
 }
 let moves = []
@@ -111,15 +112,19 @@ function init() {
         let i = 0
         for (let c of character_buttons) {
             let button = new Button({
-                texture: game.remchars.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
+                texture: game.currentchar == c ? 'button-gold.png' : game.remchars.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
                 label: c,
                 width: button_w_small*wr,
                 height: button_h*hr,
                 fontSize: 20,
                 onTap: function() {
-                    if (game.remchars.includes(c)) {
+                    if (game.currentchar == c)
+                        game.currentchar = null
+                    else if (game.remchars.includes(c)) {
                         let index = game.remchars.indexOf(c);
                         game.remchars.splice(index, 1);
+                        if (game.currentchar == null)
+                            game.currentchar = c;
                     }
                     else
                         game.remchars.push(c)
