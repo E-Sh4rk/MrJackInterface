@@ -20,7 +20,9 @@ let game = {
     prevchars: [],
     remchars: [],
     currentchar: null,
-    status: status.RUNNING
+    status: status.RUNNING,
+    used_move: false,
+    used_power: false
 }
 let moves = []
 let moveInProgress = null
@@ -67,7 +69,7 @@ function init() {
     function colorForCharacterStatus(cs, visible) {
         switch (cs) {
             case character_status.UNKNOWN:
-                return visible ? 0xffa73b : 0x99621f
+                return visible ? 0xfaae34 : 0x8f631d
             case character_status.GUILTY:
                 return visible ? 0xed2828 : 0x851c1c
             case character_status.INNOCENT_CK:
@@ -96,13 +98,14 @@ function init() {
         let button_w_small = 40;
         let button_h = 40;
 
-        let text = "TURN " + game.turn.toString() + "\n";
+        let text = "TURN " + game.turn.toString() + "\n\n";
         text += "STATUS:\n" + game.status + "\n\n";
+        text += "ACTIONS: " + (game.used_move ? "" : "MOVE ") + (game.used_power ? "" : "POWER") + "\n\n";
         text += "REMAINING CHARACTERS:\n"
         let color = 0xbbbbbb;
         text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'left'});
         text.x = panel_x*wr;
-        text.y = oh*hr/2 - text.height - 2 * button_h;
+        text.y = oh*hr/2 - text.height;
         panelContainer.addChild(text)
 
         let character_buttons = [character.SH, character.JW, character.JS, character.IL,
@@ -182,13 +185,13 @@ function init() {
                     color = 0x578099
                     break;
                 case item.SHAFT_CLOSED:
-                    color = 0x112f45
+                    color = 0x3c5869
                     break;
                 case item.LIGHT_ON:
                     color = 0xfaae34
                     break;
                 case item.LIGHT_OFF:
-                    color = 0x523c1a
+                    color = 0x8f631d
                     break;
                 case item.EXIT_OPENED:
                     color = 0x0f943d

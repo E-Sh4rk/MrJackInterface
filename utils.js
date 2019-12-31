@@ -132,7 +132,7 @@ function parseGameConfig(config) {
     let remchars = config.remchars.map(characterFromCode)
     let prevchars = config.prev_chars.map(characterFromCode)
     return { board: board, jwld: wldir2jwld(config.wldir), turn: config.turn, remchars: remchars, prevchars: prevchars, status: config.status,
-        currentchar: characterFromCode(config.selected) }
+        currentchar: characterFromCode(config.selected), used_move: config.used_move, used_power: config.user_power }
 }
 
 function gameConfigFromFile(filename) {

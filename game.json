@@ -9,7 +9,7 @@
     "JOHN_WATSON",
     "WILLIAM_GULL",
     "JEREMY_BERT",
-    "MISS_STEALTHY",
+    "INSPECTOR_LESTRADE",
     "SERGENT_GOODLEY",
     "JOHN_SMITH"
   ],
@@ -1378,13 +1378,13 @@
     "SERGENT_GOODLEY": false
   },
   "remchars": [
-    "SHERLOCK_HOLMES",
+    "MISS_STEALTHY",
+    "JOHN_WATSON",
     "INSPECTOR_LESTRADE",
-    "JEREMY_BERT",
-    "JOHN_SMITH"
+    "JEREMY_BERT"
   ],
   "used_power": false,
-  "jack": "INSPECTOR_LESTRADE",
+  "jack": "MISS_STEALTHY",
   "wldir": [
     1,
     1
