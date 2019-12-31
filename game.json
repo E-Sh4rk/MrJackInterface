@@ -11,7 +11,7 @@
     "JEREMY_BERT",
     "INSPECTOR_LESTRADE",
     "MISS_STEALTHY",
-    "SERGENT_GOODLEY"
+    "JOHN_SMITH"
   ],
   "visibility_mask": [
     [
@@ -1627,13 +1627,13 @@
     "SERGENT_GOODLEY": false
   },
   "remchars": [
-    "MISS_STEALTHY",
+    "JOHN_WATSON",
     "JEREMY_BERT",
     "SERGENT_GOODLEY",
     "JOHN_SMITH"
   ],
   "used_power": false,
-  "jack": "JOHN_SMITH",
+  "jack": "SERGENT_GOODLEY",
   "wldir": [
     1,
     1

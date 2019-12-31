@@ -23,6 +23,12 @@ module.exports = {
         JB: 'jb',
     },
 
+    move_types: {
+        power: 'power',
+        move: 'move',
+        jwld: 'jwld'
+    },
+
     status: {
         RUNNING: "RUNNING",
         JACK_ESCAPED: "JACK_ESCAPED",

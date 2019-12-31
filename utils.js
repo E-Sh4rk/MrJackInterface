@@ -139,8 +139,14 @@ function parseGameConfig(config) {
     // Output
     let remchars = config.remchars.map(characterFromCode)
     let prevchars = config.prev_chars.map(characterFromCode)
+    let can_power = false
+    let can_move = false
+    if (config.status == "PLAYING_CHARACTER") {
+        can_power = !config.used_power
+        can_move = !config.used_move
+    }
     return { board: board, jwld: wldir2jwld(config.wldir), turn: config.turn, remchars: remchars, prevchars: prevchars, status: config.status,
-        currentchar: characterFromCode(config.selected), used_move: config.used_move, used_power: config.user_power }
+        currentchar: characterFromCode(config.selected), used_move: config.used_move, can_power: can_power, can_move: can_move}
 }
 
 function gameConfigFromFile(filename) {

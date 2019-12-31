@@ -1,5 +1,5 @@
 
-var { item, character, character_status, status } = require('./defs');
+var { item, character, character_status, status, move_types } = require('./defs');
 
 let empty = { i:item.EMPTY, c:null, visible:false }
 let none = { i:item.NONE, c:null, visible:false }
@@ -21,11 +21,12 @@ let game = {
     remchars: [],
     currentchar: null,
     status: status.RUNNING,
-    used_move: false,
-    used_power: false
+    can_move: false,
+    can_power: false
 }
 let moves = []
 let moveInProgress = null
+let currentMoveType = null
 
 let displayVisibility = false
 
@@ -44,11 +45,13 @@ function init() {
     function getState() {
         /*game = utils.gameConfigFromFile("game.json")
         moves = []
-        moveInProgress = null*/
+        moveInProgress = null
+        currentMoveType = null*/
         function callback(g) {
             game = g
             moves = []
             moveInProgress = null
+            currentMoveType = null
             redraw()
         }
         utils.gameConfigFromSolver(callback)
@@ -107,23 +110,55 @@ function init() {
         // PANEL
         let button_w = 100;
         let button_w_small = 40;
+        let button_w_medium = 75;
         let button_h = 40;
+        let color = 0xbbbbbb;
 
         let text = "TURN " + game.turn.toString() + "\n\n";
         text += "STATUS:\n" + game.status + "\n\n";
-        text += "ACTIONS: " + (game.used_move ? "" : "MOVE ") + (game.used_power ? "" : "POWER") + "\n\n";
-        text += "REMAINING CHARACTERS:\n"
-        let color = 0xbbbbbb;
+        text += "ACTIONS:\n";
         text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'left'});
         text.x = panel_x*wr;
-        text.y = oh*hr/2 - text.height;
+        text.y = 10*hr;
         panelContainer.addChild(text)
+
+        let button_x = panel_x*wr + button_w_medium*wr/2
+        let button_y = text.y + text.height + button_h/2*hr
+        let actions = []
+        if (game.can_move) actions.push(move_types.move)
+        if (game.can_power) actions.push(move_types.power)
+        let i = 0
+        for (let a of actions) {
+            let button = new Button({
+                texture: currentMoveType == a ? 'button-gold.png' : 'button-blue.png',
+                label: a,
+                width: button_w_medium*wr,
+                height: button_h*hr,
+                fontSize: 20,
+                onTap: function() {
+                    if (currentMoveType == a)
+                        currentMoveType = null
+                    else
+                        currentMoveType = a
+                    redraw()
+                }
+            })
+            button.x = button_x + i*(button_w_medium+10)*wr
+            button.y = button_y
+            panelContainer.addChild(button)
+            i++
+        }
+
+        let text2 = new PIXI.Text("REMAINING CHARACTERS:\n", {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'left'});
+        text2.x = panel_x*wr;
+        text2.y = button_y + button_h/2*hr + 10*hr;
+        panelContainer.addChild(text2)
 
         let character_buttons = [character.SH, character.JW, character.JS, character.IL,
             character.MS, character.SG, character.WG, character.JB]
-        let button_x = panel_x*wr + button_w_small*wr/2
-        let button_y = text.y + text.height + button_h/2*hr
-        let i = 0
+        button_x = panel_x*wr + button_w_small*wr/2
+        button_y = text2.y + text2.height + button_h/2*hr
+        i = 0
         for (let c of character_buttons) {
             let button = new Button({
                 texture: game.currentchar == c ? 'button-gold.png' : game.remchars.includes(c) ? 'button-blue.png' : 'button-blue-dark.png',
@@ -260,13 +295,23 @@ function init() {
         })
         
         // MOVES
-        graphics.lineStyle(2,0xe8db4d)
         for (let m of moves) {
+            let color = null
+            switch (m.type) {
+                case move_types.jwld:
+                case move_types.power:
+                    color = 0xe8db4d
+                    break;
+                case move_types.move:
+                    color = 0x31f534
+                    break;
+            }
+            graphics.lineStyle(2, color)
             let start = m.start.toPoint().add(m.start.center())
             let end = m.end.toPoint().add(m.end.center())
             graphics.moveTo(start.x*wr, start.y*hr)
             graphics.lineTo(end.x*wr, end.y*hr)
-            graphics.beginFill(0xe8db4d)
+            graphics.beginFill(color)
             graphics.drawCircle(end.x*wr, end.y*hr, 5)
             graphics.endFill()
         }
@@ -285,10 +330,10 @@ function init() {
         const hexCoordinates = Grid.pointToHex(offsetX/wr, offsetY/hr)
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
             let elt = game.board[hexCoordinates.y][hexCoordinates.x]
-            if (elt.i != item.NONE) {
+            if (elt.i != item.NONE && currentMoveType != null) {
                 if (moveInProgress) {
                     if (moveInProgress.x != hexCoordinates.x || moveInProgress.y != hexCoordinates.y)
-                    moves.push({start:moveInProgress, end:hexCoordinates})
+                        moves.push({type: currentMoveType, start:moveInProgress, end:hexCoordinates})
                     moveInProgress = null
                 }
                 else
@@ -306,8 +351,11 @@ function init() {
         const hexCoordinates = Grid.pointToHex(ev.offsetX/wr, ev.offsetY/hr)
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
             let elt = game.board[hexCoordinates.y][hexCoordinates.x]
-            if (elt.c == character.JW)
+            if (elt.c == character.JW && currentMoveType != null) {
                 game.jwld = (game.jwld+1) % 6;
+                if (moves.length == 0 || moves[moves.length-1].type != move_types.jwld)
+                    moves.push({type:move_types.jwld, start:hexCoordinates, end:hexCoordinates})
+            }
             else if (elt.i != item.NONE)
                 displayVisibility = !displayVisibility
         }
