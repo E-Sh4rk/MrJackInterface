@@ -176,7 +176,7 @@ const { spawn } = require("child_process");
 function spawnSolver() {
     if (solver != null)
         return;
-    solver = spawn("solver", [], {stdio: ['pipe', 'pipe', 'pipe']});
+    solver = spawn("julia", ["--project", "./solver/", "./solver/src/interactive.jl"], {stdio: ['pipe', 'pipe', 'pipe']});
     solver.stdin.setEncoding('utf-8');
     solver.stdout.setEncoding('utf-8');
     solver.stderr.setEncoding('utf-8');

@@ -180,9 +180,10 @@ function init() {
             if (displayVisibility) {
                 if (m.i == item.NONE)
                     invisible = true
-                else {
+                else if (m.i == item.OBSTACLE || m.i == item.LIGHT_OFF || m.i == item.LIGHT_ON)
+                    color = 0x555555
+                else 
                     color = m.visible ? 0xfaae34 : 0x8f631d
-                }
             }
             else {
                 switch (m.i) {
