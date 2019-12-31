@@ -1,28 +1,25 @@
 var fs = require('fs');
 var { item, character, character_status, status } = require('./defs');
 
-const MATRIX_WIDTH = 17
-const MATRIX_HEIGHT = 13
-
 let none = { i:item.NONE }
-let mnone = { "type": 1, "status": false, "lampid": 0, "character": 0 }
+let mnone = { "type": "OUT_OF_BOUNDS", "status": false, "lampid": 0, "character": 0 }
 
 function tile2item(type, status) {
     switch(type) {
-        case 0:
+        case "INVALID":
             console.error("Invalid call to tile2item")
             return null
-        case 1:
+        case "OUT_OF_BOUNDS":
             return item.NONE
-        case 2:
+        case "HOUSE":
             return item.OBSTACLE
-        case 3:
+        case "FREE":
             return item.EMPTY
-        case 4:
+        case "WELL":
             return status ? item.SHAFT_OPENED : item.SHAFT_CLOSED
-        case 5:
+        case "LAMP":
             return status ? item.LIGHT_ON : item.LIGHT_OFF
-        case 6:
+        case "EXIT":
             return status ? item.EXIT_OPENED : item.EXIT_CLOSED
     }
 }
@@ -70,29 +67,41 @@ function graphicPos2solverPos(x, y) {
     return [y, x]
 }
 
-charactersArr = [character.SH, character.JB, character.WG, character.JW, character.IL,
-    character.MS, character.JS, character.SG]
+let charactersCorrespondance = {
+    "NO_CHARACTER":null,
+    "SHERLOCK_HOLMES":character.SH,
+    "JEREMY_BERT":character.JB,
+    "WILLIAM_GULL":character.WG,
+    "JOHN_WATSON":character.JW,
+    "INSPECTOR_LESTRADE":character.IL,
+    "MISS_STEALTHY":character.MS,
+    "JOHN_SMITH":character.JS,
+    "SERGENT_GOODLEY":character.SG
+}
 function characterFromCode(code) {
-    if (code <= 0)
-        return null
-    return charactersArr[code-1]
+    return charactersCorrespondance[code]
 }
 function codeFromCharacter(c) {
-    if (c == null)
-        return 0
-    return charactersArr.indexOf(c)+1;
+    for (let arr of Object.entries(charactersCorrespondance)) {
+        if (arr[1] == c)
+            return arr[0]
+    }
+    return null
 }
 
+/*const MATRIX_WIDTH = 17
+const MATRIX_HEIGHT = 13*/
 function parseGameConfig(config) {
     // Give a proper shape to the array, and transpose the resulting matrix
-    let matrix = []
+    /*let matrix = []
     for (let i = 0; i < MATRIX_HEIGHT; i++) {
         let line = []
         for (let j = 0; j < MATRIX_WIDTH; j++) {
             line.push(config.board[i*MATRIX_WIDTH+j])
         }
         matrix.push(line)
-    }
+    }*/
+    let matrix = config.board
     matrix = matrix[0].map((col, i) => matrix.map(row => row[i]))
 
     let board = []
@@ -104,13 +113,14 @@ function parseGameConfig(config) {
             l2 = matrix[2*j+1]
         for (let i = 0; i < l1.length; i++) {
             let elt = l1[i]
-            if (elt.type == 0)
+            if (elt.type == "INVALID")
                 elt = l2[i]
             let item = tile2item(elt.type, elt.activated)
             let character = characterFromCode(elt.character)
-            let char_status = character != null ? config.cstatus[elt.character-1] : null
+            let char_status = character != null ? config.cstatus[elt.character] : null
+            let char_visible = character != null ? config.visible[elt.character] : null
             let it = elt.lampid == 0 ? null : elt.lampid.toString()
-            line.push( {i:item, c:character, it:it, cs:char_status} )
+            line.push( {i:item, c:character, it:it, cs:char_status, cv:char_visible} )
         }
         board.push(line)
     }
@@ -120,8 +130,9 @@ function parseGameConfig(config) {
 
     // Output
     let remchars = config.remchars.map(characterFromCode)
-    let prevchars = config.prevchars.map(characterFromCode)
-    return { board: board, jwld: wldir2jwld(config.wldir), turn: config.turn, remchars: remchars, prevchars: prevchars, status: config.status }
+    let prevchars = config.prev_chars.map(characterFromCode)
+    return { board: board, jwld: wldir2jwld(config.wldir), turn: config.turn, remchars: remchars, prevchars: prevchars, status: config.status,
+        currentchar: characterFromCode(config.selected) }
 }
 
 function gameConfigFromFile(filename) {

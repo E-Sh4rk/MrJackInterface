@@ -97,7 +97,7 @@ function init() {
         let button_h = 40;
 
         let text = "TURN " + game.turn.toString() + "\n";
-        text += "STATUS: " + game.status + "\n\n";
+        text += "STATUS:\n" + game.status + "\n\n";
         text += "REMAINING CHARACTERS:\n"
         let color = 0xbbbbbb;
         text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'left'});
@@ -210,7 +210,7 @@ function init() {
             }
             if (m.c != null || m.it != null) {
                 let text = m.c != null ? m.c : m.it;
-                let color = m.c != null ? colorForCharacterStatus(m.cs, m.cvisible) : 0x222222;
+                let color = m.c != null ? colorForCharacterStatus(m.cs, m.cv) : 0x222222;
                 text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'center'});
                 text.x = (point.x+hex.width()/2)*wr - text.width/2;
                 text.y = (point.y+hex.height()/2)*hr - text.height/2;
