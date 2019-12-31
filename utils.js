@@ -1,6 +1,8 @@
 var fs = require('fs');
 var { item, character, character_status, status } = require('./defs');
 
+const StringBuilder = require("string-builder");
+
 let none = { i:item.NONE }
 let mnone = { "type": "OUT_OF_BOUNDS", "status": false, "lampid": 0, "character": 0 }
 
@@ -150,23 +152,28 @@ function gameConfigFromFile(filename) {
 
 let solver = null
 let answerInProgress = null
+let answerParseInfo = null
 
 function sendCommand(cmd, callback) {
     if (solver == null || answerInProgress != null)
         return;
-    answerInProgress = ""
+    answerInProgress = new StringBuilder()
+    answerParseInfo = { cb:0, sb:0 }
     solver.stdin.write(cmd + "\n")
-    solver.stdin.flush()
+    //solver.stdin.flush()
+    solver.stdout.to
     solver.stdout.on('data', (data) => {
-        try {
-            answerInProgress += data
-            let json = JSON.parse(answerInProgress)
+        answerInProgress.append(data)
+        answerParseInfo.cb += (data.split("{").length - 1)
+        answerParseInfo.cb -= (data.split("}").length - 1)
+        answerParseInfo.sb += (data.split("[").length - 1)
+        answerParseInfo.sb -= (data.split("]").length - 1)
+        if (answerParseInfo.cb == 0 && answerParseInfo.sb == 0) {
+            let json = JSON.parse(answerInProgress.toString())
             solver.stdout.removeAllListeners('data')
             callback(json)
             answerInProgress = null
-        }
-        catch (e) {
-            console.log ("Invalid solver answer. Assuming the answer takes multiple chunks.")
+            answerParseInfo = null
         }
     });
 }
@@ -176,7 +183,7 @@ const { spawn } = require("child_process");
 function spawnSolver() {
     if (solver != null)
         return;
-    solver = spawn("julia", ["--project", "./solver/", "./solver/src/interactive.jl"], {stdio: ['pipe', 'pipe', 'pipe']});
+    solver = spawn("julia", ["--project=.\\solver", ".\\solver\\src\\interactive.jl"], {stdio: ['pipe', 'pipe', 'pipe']});
     solver.stdin.setEncoding('utf-8');
     solver.stdout.setEncoding('utf-8');
     solver.stderr.setEncoding('utf-8');

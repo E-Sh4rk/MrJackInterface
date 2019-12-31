@@ -10,8 +10,8 @@
     "WILLIAM_GULL",
     "JEREMY_BERT",
     "INSPECTOR_LESTRADE",
-    "SERGENT_GOODLEY",
-    "JOHN_SMITH"
+    "MISS_STEALTHY",
+    "SERGENT_GOODLEY"
   ],
   "visibility_mask": [
     [
@@ -1628,12 +1628,12 @@
   },
   "remchars": [
     "MISS_STEALTHY",
-    "WILLIAM_GULL",
     "JEREMY_BERT",
+    "SERGENT_GOODLEY",
     "JOHN_SMITH"
   ],
   "used_power": false,
-  "jack": "MISS_STEALTHY",
+  "jack": "JOHN_SMITH",
   "wldir": [
     1,
     1

@@ -39,10 +39,19 @@ var utils = require('./utils');
 const CASE_SIZE = 25
 function init() {
 
+    utils.spawnSolver()
+
     function getState() {
-        game = utils.gameConfigFromFile("game.json")
+        /*game = utils.gameConfigFromFile("game.json")
         moves = []
-        moveInProgress = null
+        moveInProgress = null*/
+        function callback(g) {
+            game = g
+            moves = []
+            moveInProgress = null
+            redraw()
+        }
+        utils.gameConfigFromSolver(callback)
     }
     getState()
 
