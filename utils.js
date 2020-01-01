@@ -62,9 +62,9 @@ function jwld2wldir(jwld) {
             return [-2, 0]
     }
 }
-function graphicPos2solverPos(x, y) {
-    x = x - 1 // Because we start at index 1 for the x-axis
-    y = 2*y
+function graphicPos2solverPos(pt) {
+    x = pt.x - 1 // Because we start at index 1 for the x-axis
+    y = 2*pt.y
     if (x%2 == 0) y++
     return [y, x]
 }
