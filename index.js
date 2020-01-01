@@ -208,9 +208,7 @@ function init() {
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
-            onTap: function() {
-                resetMoves()
-              }
+            onTap: resetMoves
         })
         button2.x = panel_x*wr + button2.width/2
         button2.y = oh*hr - button2.height - 25*hr
@@ -221,7 +219,11 @@ function init() {
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
-            onTap: () => console.log('End move')
+            onTap: function () {
+                utils.sendMoves(game.status, moves, jwld, selectedCards, selectedCard,
+                    getState,
+                    (code) => console.log("Invalid move: server returned error " + code.toString()))
+            }
         })
         button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
         button1.y = oh*hr - button1.height - 25*hr

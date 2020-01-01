@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { item, character, character_status, status } = require('./defs');
+var { item, character, character_status, status, move_types } = require('./defs');
 
 const StringBuilder = require("string-builder");
 
@@ -67,6 +67,9 @@ function graphicPos2solverPos(x, y) {
     y = 2*y
     if (x%2 == 0) y++
     return [y, x]
+}
+function pos2json(arr) {
+    return "[" + arr[0].toString() + ", " + arr[1].toString() + "]"
 }
 
 let charactersCorrespondance = {
@@ -212,8 +215,78 @@ function gameConfigFromSolver(callback) {
     sendCommand("state", function (json) { callback(parseGameConfig(json)) })
 }
 
+function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_callback, failure_callback) {
+    function mk_callback(success) {
+        function callback(response) {
+            if (response.status == 0)
+                success()
+            else
+                failure_callback(response.status)
+        }
+        return callback
+    }
+    switch (status) {
+        case "JACK_ESCAPED":
+        case "JACK_CAPTURED":
+        case "TIMEOUT":
+            break;
+        case "PICKING_JACK":
+        case "PICKING_SHERLOCK_CARD":
+            sendCommand("play chance [" + codeFromCharacter(selectedCard) + "]", mk_callback(success_callback))
+            break;
+        case "PICKING_PLAYABLE_CHARACTERS":
+            let characters = ""
+            for (let c in selectedCards) {
+                if (characters)
+                    characters += ", "
+                characters += codeFromCharacter(c)
+            }
+            let cb = success_callback
+            if (selectedCard != null)
+                cb = () =>
+                sendMoves("SELECTING_CHARACTER", moves, jwld, selectedCards, selectedCard, success_callback, failure_callback)
+            sendCommand("play chance [" + characters + "]", mk_callback(cb))
+            break;
+        case "SELECTING_CHARACTER":
+            sendCommand("play user choose " + codeFromCharacter(selectedCard), mk_callback(success_callback))
+            break;
+        case "PLAYING_CHARACTER":
+            if (moves.length == 0)
+                success_callback()
+            let m = moves[0]
+            moves.shift()
+            let cmd = null
+            switch (m.type) {
+                case move_types.jwld:
+                    cmd = "play user power [{start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(jwld2wldir(jwld)) + "}]"
+                    break
+                case move_types.move:
+                    cmd = "play user move {start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(graphicPos2solverPos(m.end)) + "}"
+                    break
+                case move_types.power:
+                    let ms = [m]
+                    while (moves[0].type == move_types.power) {
+                        ms.push(moves[0])
+                        moves.shift()
+                    }
+                    cmd = ""
+                    for (let m of ms) {
+                        if (cmd)
+                            cmd += ", "
+                        cmd += "{start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(graphicPos2solverPos(m.end)) + "}"
+                    }
+                    cmd = "play user power [" + cmd + "]"
+                    break
+            }
+            sendCommand(cmd, mk_callback(() =>
+                sendMoves(status, moves, jwld, selectedCards, selectedCard, success_callback, failure_callback)))
+            break;
+    }
+}
+
 module.exports = {
     gameConfigFromFile:gameConfigFromFile,
     spawnSolver:spawnSolver,
-    gameConfigFromSolver:gameConfigFromSolver
+    gameConfigFromSolver:gameConfigFromSolver,
+    sendMoves: sendMoves
 }

@@ -6,8 +6,8 @@
   "status": "SELECTING_CHARACTER",
   "shcards": [
     "SHERLOCK_HOLMES",
+    "JOHN_WATSON",
     "INSPECTOR_LESTRADE",
-    "WILLIAM_GULL",
     "JEREMY_BERT",
     "MISS_STEALTHY",
     "SERGENT_GOODLEY",
@@ -1627,13 +1627,13 @@
     "SERGENT_GOODLEY": false
   },
   "remchars": [
-    "JOHN_WATSON",
-    "INSPECTOR_LESTRADE",
-    "JEREMY_BERT",
-    "JOHN_SMITH"
+    "SHERLOCK_HOLMES",
+    "MISS_STEALTHY",
+    "WILLIAM_GULL",
+    "SERGENT_GOODLEY"
   ],
   "used_power": false,
-  "jack": "JOHN_WATSON",
+  "jack": "WILLIAM_GULL",
   "wldir": [
     1,
     1
