@@ -316,6 +316,7 @@ function init() {
             let color = null
             switch (m.type) {
                 case move_types.jwld:
+                case move_types.ask_sherlock:
                 case move_types.power:
                     color = 0xe8db4d
                     break;
@@ -369,11 +370,15 @@ function init() {
         const hexCoordinates = Grid.pointToHex(ev.offsetX/wr, ev.offsetY/hr)
         if (hexCoordinates.y < game.board.length && hexCoordinates.x < game.board[0].length) {
             let elt = game.board[hexCoordinates.y][hexCoordinates.x]
-            if (elt.c == character.JW && currentMoveType != null) {
+            if (elt.c == character.JW && currentMoveType == move_types.power) {
                 jwld = jwld == null ? game.jwld : jwld
                 jwld = (jwld+1) % 6;
                 moves = moves.filter(m => m.type != move_types.jwld)
                 moves.push({type:move_types.jwld, start:hexCoordinates, end:hexCoordinates})
+            }
+            else if (elt.c == character.SH && currentMoveType == move_types.power) {
+                moves = moves.filter(m => m.type != move_types.ask_sherlock)
+                moves.push({type:move_types.ask_sherlock, start:hexCoordinates, end:hexCoordinates})
             }
             else if (elt.i != item.NONE)
                 displayVisibility = !displayVisibility

@@ -26,7 +26,8 @@ module.exports = {
     move_types: {
         power: 'power',
         move: 'move',
-        jwld: 'jwld'
+        jwld: 'jwld',
+        ask_sherlock: 'ask_sherlock'
     },
 
     status: {

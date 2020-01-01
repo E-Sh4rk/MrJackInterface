@@ -66,7 +66,7 @@ function graphicPos2solverPos(pt) {
     x = pt.x - 1 // Because we start at index 1 for the x-axis
     y = 2*pt.y
     if (x%2 == 0) y++
-    return [y, x]
+    return [y+1, x+1] // Because arrays starts at index 1 in Julia
 }
 function pos2json(arr) {
     return "[" + arr[0].toString() + ", " + arr[1].toString() + "]"
@@ -172,6 +172,7 @@ let answerParseInfo = null
 function sendCommand(cmd, callback) {
     if (solver == null || answerInProgress != null)
         return;
+    console.log(cmd) // DEBUG
     answerInProgress = new StringBuilder()
     answerParseInfo = { cb:0, sb:0 }
     solver.stdin.write(cmd + "\n")
@@ -251,14 +252,19 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
             sendCommand("play user choose [" + codeFromCharacter(selectedCard) + "]", mk_callback(success_callback))
             break;
         case "PLAYING_CHARACTER":
-            if (moves.length == 0)
+            if (moves.length == 0) {
                 success_callback()
+                return
+            }
             let m = moves[0]
             moves.shift()
             let cmd = null
             switch (m.type) {
                 case move_types.jwld:
                     cmd = "play user power [{\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(jwld2wldir(jwld)) + "}]"
+                    break
+                case move_types.ask_sherlock:
+                    cmd = "play user power []"
                     break
                 case move_types.move:
                     cmd = "play user move {\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(graphicPos2solverPos(m.end)) + "}"
