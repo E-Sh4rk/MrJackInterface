@@ -89,7 +89,7 @@ function characterFromCode(code) {
 function codeFromCharacter(c) {
     for (let arr of Object.entries(charactersCorrespondance)) {
         if (arr[1] == c)
-            return arr[0]
+            return "\"" + arr[0] + "\""
     }
     return null
 }
@@ -186,9 +186,9 @@ function sendCommand(cmd, callback) {
         if (answerParseInfo.cb == 0 && answerParseInfo.sb == 0) {
             let json = JSON.parse(answerInProgress.toString())
             solver.stdout.removeAllListeners('data')
-            callback(json)
             answerInProgress = null
             answerParseInfo = null
+            callback(json)
         }
     });
 }
