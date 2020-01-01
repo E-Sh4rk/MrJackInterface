@@ -236,7 +236,7 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
             break;
         case "PICKING_PLAYABLE_CHARACTERS":
             let characters = ""
-            for (let c in selectedCards) {
+            for (let c of selectedCards) {
                 if (characters)
                     characters += ", "
                 characters += codeFromCharacter(c)
@@ -248,7 +248,7 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
             sendCommand("play chance [" + characters + "]", mk_callback(cb))
             break;
         case "SELECTING_CHARACTER":
-            sendCommand("play user choose [" + codeFromCharacter(selectedCard), mk_callback(success_callback) + "]")
+            sendCommand("play user choose [" + codeFromCharacter(selectedCard) + "]", mk_callback(success_callback))
             break;
         case "PLAYING_CHARACTER":
             if (moves.length == 0)
