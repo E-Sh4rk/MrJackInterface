@@ -258,10 +258,10 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
             let cmd = null
             switch (m.type) {
                 case move_types.jwld:
-                    cmd = "play user power [{start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(jwld2wldir(jwld)) + "}]"
+                    cmd = "play user power [{\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(jwld2wldir(jwld)) + "}]"
                     break
                 case move_types.move:
-                    cmd = "play user move {start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(graphicPos2solverPos(m.end)) + "}"
+                    cmd = "play user move {\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(graphicPos2solverPos(m.end)) + "}"
                     break
                 case move_types.power:
                     let ms = [m]
@@ -273,7 +273,7 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
                     for (let m of ms) {
                         if (cmd)
                             cmd += ", "
-                        cmd += "{start: " + pos2json(graphicPos2solverPos(m.start)) + ", end: " + pos2json(graphicPos2solverPos(m.end)) + "}"
+                        cmd += "{\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(graphicPos2solverPos(m.end)) + "}"
                     }
                     cmd = "play user power [" + cmd + "]"
                     break
