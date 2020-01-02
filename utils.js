@@ -31,15 +31,11 @@ function wldir2jwld(wldir) {
         case -2:
             return 0
         case -1:
-            return 1
+            return wldir[1] == 1 ? 1 : 5
         case 1:
-            return 2
+            return wldir[1] == 1 ? 2 : 4
         case 2:
             return 3
-        case 1:
-            return 4
-        case -1:
-            return 5
         default:
             return 0
     }
@@ -59,7 +55,8 @@ function jwld2wldir(jwld) {
         case 5:
             return [-1, -1]
         default:
-            return [-2, 0]
+            console.error("Wrong orientation.")
+            return null
     }
 }
 function graphicPos2solverPos(pt) {

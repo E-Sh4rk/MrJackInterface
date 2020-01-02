@@ -13,14 +13,14 @@ module.exports = {
     },
     
     character: {
-        SH: 'sh',
-        JW: 'jw',
-        JS: 'js',
-        IL: 'il',
-        MS: 'ms',
-        SG: 'sg',
-        WG: 'wg',
-        JB: 'jb',
+        SH: 'SH',
+        JW: 'JW',
+        JS: 'JS',
+        IL: 'IL',
+        MS: 'MS',
+        SG: 'SG',
+        WG: 'WG',
+        JB: 'JB',
     },
 
     move_types: {
