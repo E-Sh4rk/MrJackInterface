@@ -172,7 +172,7 @@ let answerParseInfo = null
 function sendCommand(cmd, callback) {
     if (solver == null || answerInProgress != null)
         return;
-    console.log(cmd) // DEBUG
+    console.log("[OUT] " + cmd)
     answerInProgress = new StringBuilder()
     answerParseInfo = { cb:0, sb:0 }
     solver.stdin.write(cmd + "\n")
@@ -185,15 +185,17 @@ function sendCommand(cmd, callback) {
         answerParseInfo.sb += (data.split("[").length - 1)
         answerParseInfo.sb -= (data.split("]").length - 1)
         if (answerParseInfo.cb == 0 && answerParseInfo.sb == 0) {
-            solver.stdout.removeAllListeners('data')
             let answer = answerInProgress.toString()
-            answerInProgress = null
-            answerParseInfo = null
-            try {
-                let json = JSON.parse(answer)
-                callback(json)
+            if (answer && answer.trim()) {
+                solver.stdout.removeAllListeners('data')
+                answerInProgress = null
+                answerParseInfo = null
+                try {
+                    let json = JSON.parse(answer)
+                    callback(json)
+                }
+                catch (e) { console.log ("[IN] " + e.message + ": " + answer) }
             }
-            catch (e) { console.log ("Received invalid JSON:" + e.message) }
         }
     });
 }
@@ -225,8 +227,10 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
         function callback(response) {
             if (response.status == 0)
                 success()
+            else if (response.status == 1)
+                failure_callback(response.status, "Invalid move")
             else
-                failure_callback(response.status)
+                failure_callback(response.status, response.message)
         }
         return callback
     }
