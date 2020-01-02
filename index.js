@@ -326,7 +326,7 @@ function init() {
             let color = null
             switch (m.type) {
                 case move_types.jwld:
-                case move_types.ask_sherlock:
+                case move_types.do_nothing:
                 case move_types.power:
                     color = 0xe8db4d
                     break;
@@ -387,8 +387,8 @@ function init() {
                 moves.push({type:move_types.jwld, start:hexCoordinates, end:hexCoordinates})
             }
             else if (elt.c == character.SH && currentMoveType == move_types.power) {
-                moves = moves.filter(m => m.type != move_types.ask_sherlock)
-                moves.push({type:move_types.ask_sherlock, start:hexCoordinates, end:hexCoordinates})
+                moves = moves.filter(m => m.type != move_types.do_nothing)
+                moves.push({type:move_types.do_nothing, start:hexCoordinates, end:hexCoordinates})
             }
             else if (elt.i != item.NONE)
                 displayVisibility = !displayVisibility

@@ -27,7 +27,7 @@ module.exports = {
         power: 'power',
         move: 'move',
         jwld: 'jwld',
-        ask_sherlock: 'ask_sherlock'
+        do_nothing: 'do_nothing'
     },
 
     status: {

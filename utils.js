@@ -271,7 +271,7 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
                 case move_types.jwld:
                     cmd = "play user power [{\"start\": " + pos2json(graphicPos2solverPos(m.start)) + ", \"end\": " + pos2json(jwld2wldir(jwld)) + "}]"
                     break
-                case move_types.ask_sherlock:
+                case move_types.do_nothing:
                     cmd = "play user power []"
                     break
                 case move_types.move:
