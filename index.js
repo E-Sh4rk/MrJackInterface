@@ -14,6 +14,7 @@ let game = {
         [none,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty],
         [none,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty],
         [none,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty],
+        [none,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty],
     ],
     jwld: 0,
     turn: 0,
@@ -228,7 +229,6 @@ function init() {
         button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
         button1.y = oh*hr - button1.height - 25*hr
         panelContainer.addChild(button1)
-
         // BOARD
         Grid.rectangle({ width: width, height: height }).forEach(hex => {
             const point = hex.toPoint()

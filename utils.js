@@ -4,7 +4,7 @@ var { item, character, character_status, status, move_types } = require('./defs'
 const StringBuilder = require("string-builder");
 
 let none = { i:item.NONE }
-let mnone = { "type": "OUT_OF_BOUNDS", "status": false, "lampid": 0, "character": 0 }
+let mnone = { "type": "OUT_OF_BOUNDS", "status": false, "lampid": 0, "character": "NO_CHARACTER" }
 
 function tile2item(type, status) {
     switch(type) {
@@ -118,10 +118,10 @@ function parseGameConfig(config) {
         let v1 = visibility_mask[2*j]
         let l2 = l1.map((v, i) => mnone)
         let v2 = v1.map((v, i) => false)
-        if (matrix[2*j+1] != null) {
+        if (matrix[2*j+1] != null)
             l2 = matrix[2*j+1]
+        if (visibility_mask[2*j+1] != null)
             v2 = visibility_mask[2*j+1]
-        }
         for (let i = 0; i < l1.length; i++) {
             let elt = l1[i]
             let visible = v1[i]
@@ -269,7 +269,7 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
                     break
                 case move_types.power:
                     let ms = [m]
-                    while (moves[0].type == move_types.power) {
+                    while (moves.length > 0 && moves[0].type == move_types.power) {
                         ms.push(moves[0])
                         moves.shift()
                     }
