@@ -223,7 +223,7 @@ function init() {
             onTap: function () {
                 utils.sendMoves(game.status, moves, jwld, selectedCards, selectedCard,
                     getState,
-                    (code) => console.log("Invalid move: server returned error " + code.toString()))
+                    function (code) { getState(); alert("Invalid move: server returned error " + code.toString()); })
             }
         })
         button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
