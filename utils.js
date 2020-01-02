@@ -236,9 +236,11 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
             sendCommand("play chance [" + codeFromCharacter(selectedCard) + "]", mk_callback(success_callback))
             break;
         case "PICKING_PLAYABLE_CHARACTERS":
-            let characters = codeFromCharacter(selectedCard)
+            let characters = selectedCard ? codeFromCharacter(selectedCard) : ""
             for (let c of selectedCards) {
-                characters += ", " + codeFromCharacter(c)
+                if (characters)
+                    characters += ", "
+                characters += codeFromCharacter(c)
             }
             let cb = success_callback
             if (selectedCard != null)
