@@ -56,6 +56,10 @@ function init() {
         selectedCards = game.remchars.slice()
         redraw()
     }
+    function isReset() {
+        return moves.length == 0 && selectedCard == game.currentchar
+            && JSON.stringify(selectedCards) == JSON.stringify(game.remchars)
+    }
 
     function getState() {
         /*game = utils.gameConfigFromFile("game.json")
@@ -203,13 +207,19 @@ function init() {
             i++
         }
 
+        let is_reset = isReset()
         let button2 = new Button({
             texture: 'button-red.png',
-            label: 'Cancel',
+            label: is_reset ? 'Back' : 'Cancel',
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
-            onTap: resetMoves
+            onTap: function() {
+                if (is_reset)
+                    utils.sendBack(getState, getState)
+                else
+                    resetMoves()
+                }
         })
         button2.x = panel_x*wr + button2.width/2
         button2.y = oh*hr - button2.height - 25*hr

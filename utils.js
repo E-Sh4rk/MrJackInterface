@@ -288,9 +288,20 @@ function sendMoves(status, moves, jwld, selectedCards, selectedCard, success_cal
     }
 }
 
+function sendBack(success_callback, failure_callback) {
+    function callback(response) {
+        if (response.status == 0)
+            success_callback()
+        else
+            failure_callback(response.status)
+    }
+    sendCommand("back", callback)
+}
+
 module.exports = {
     gameConfigFromFile:gameConfigFromFile,
     spawnSolver:spawnSolver,
     gameConfigFromSolver:gameConfigFromSolver,
-    sendMoves: sendMoves
+    sendMoves: sendMoves,
+    sendBack: sendBack
 }
