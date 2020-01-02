@@ -185,11 +185,15 @@ function sendCommand(cmd, callback) {
         answerParseInfo.sb += (data.split("[").length - 1)
         answerParseInfo.sb -= (data.split("]").length - 1)
         if (answerParseInfo.cb == 0 && answerParseInfo.sb == 0) {
-            let json = JSON.parse(answerInProgress.toString())
             solver.stdout.removeAllListeners('data')
+            let answer = answerInProgress.toString()
             answerInProgress = null
             answerParseInfo = null
-            callback(json)
+            try {
+                let json = JSON.parse(answer)
+                callback(json)
+            }
+            catch (e) { console.log ("Received invalid JSON:" + e.message) }
         }
     });
 }
