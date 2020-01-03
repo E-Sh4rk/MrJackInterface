@@ -335,6 +335,10 @@ function sendLoad(filename, success_callback, failure_callback) {
     sendCommand("load " + JSON.stringify({"filename": filename}), callback)
 }
 
+function sendAI(success_callback, failure_callback) {
+    console.error ("AI not implemented")
+}
+
 module.exports = {
     gameConfigFromFile:gameConfigFromFile,
     spawnSolver:spawnSolver,
@@ -343,5 +347,6 @@ module.exports = {
     sendBack: sendBack,
     sendReset: sendReset,
     sendLoad: sendLoad,
-    sendSave: sendSave
+    sendSave: sendSave,
+    sendAI: sendAI
 }

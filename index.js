@@ -93,6 +93,9 @@ function init() {
         return moves.length == 0 && selectedCard == game.currentchar
             && JSON.stringify(selectedCards) == JSON.stringify(game.remchars)
     }
+    function canAIPlay() {
+        return game.status == "SELECTING_CHARACTER" || game.status == "PLAYING_CHARACTER"
+    }
 
     function getState() {
         /*game = utils.gameConfigFromFile("game.json")
@@ -241,6 +244,7 @@ function init() {
         }
 
         let is_reset = isReset()
+        let ai_play = is_reset && canAIPlay()
         let button2 = new Button({
             texture: 'button-red.png',
             label: is_reset ? 'Back' : 'Cancel',
@@ -259,14 +263,17 @@ function init() {
         panelContainer.addChild(button2)
         let button1 = new Button({
             texture: 'button-green.png',
-            label: 'End move',
+            label: ai_play ? 'Play AI' : 'End move',
             width: button_w*wr,
             height: button_h*hr,
             fontSize: 20,
             onTap: function () {
-                utils.sendMoves(game.status, moves, jwld, selectedCards, selectedCard,
-                    getState,
-                    function (code, msg) { getState(); alert("Error: " + msg); })
+                if (ai_play)
+                    utils.sendAI(getState, function (code, msg) { getState(); alert("Error: " + msg); })
+                else
+                    utils.sendMoves(game.status, moves, jwld, selectedCards, selectedCard,
+                        getState,
+                        function (code, msg) { getState(); alert("Error: " + msg); })
             }
         })
         button1.x = panel_x*wr + button1.width/2 + button2.width + 10*wr
