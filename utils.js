@@ -305,10 +305,43 @@ function sendBack(success_callback, failure_callback) {
     sendCommand("back", callback)
 }
 
+function sendReset(success_callback, failure_callback) {
+    function callback(response) {
+        if (response.status == 0)
+            success_callback()
+        else
+            failure_callback(response.status)
+    }
+    sendCommand("reset", callback)
+}
+
+function sendSave(filename, success_callback, failure_callback) {
+    function callback(response) {
+        if (response.status == 0)
+            success_callback()
+        else
+            failure_callback(response.status)
+    }
+    sendCommand("save " + JSON.stringify({"filename": filename}), callback)
+}
+
+function sendLoad(filename, success_callback, failure_callback) {
+    function callback(response) {
+        if (response.status == 0)
+            success_callback()
+        else
+            failure_callback(response.status)
+    }
+    sendCommand("load " + JSON.stringify({"filename": filename}), callback)
+}
+
 module.exports = {
     gameConfigFromFile:gameConfigFromFile,
     spawnSolver:spawnSolver,
     gameConfigFromSolver:gameConfigFromSolver,
     sendMoves: sendMoves,
-    sendBack: sendBack
+    sendBack: sendBack,
+    sendReset: sendReset,
+    sendLoad: sendLoad,
+    sendSave: sendSave
 }

@@ -41,11 +41,44 @@ const PIXI = require('pixi.js')
 PIXI.Renderer.registerPlugin('interaction', InteractionManager)*/
 const { Button } = require('./button')
 var utils = require('./utils');
+let { remote } = require('electron');
 
 const CASE_SIZE = 25
 function init() {
 
     utils.spawnSolver()
+
+    remote.getGlobal("SetMenu")([
+        {
+            label: 'Game',
+            submenu: [
+                {
+                    label:'Save',
+                    click() {
+                        filename = remote.getGlobal("showSaveDialogSync")()
+                        if (filename)
+                            utils.sendSave(filename, () => alert("Successfully saved!"), () => alert("Save failed!"))
+                    }
+                },
+                {
+                    label:'Load',
+                    click() {
+                        filename = remote.getGlobal("showOpenDialogSync")({ properties: ['openFile'] })
+                        if (filename)
+                            utils.sendLoad(filename[0], function () { getState() ; alert("Successfully loaded!") },
+                                function () { getState() ; alert("Load failed!") })
+                    }
+                },
+                {
+                    label:'Reset',
+                    click() { 
+                        if (confirm("Do you want to reset the game?"))
+                            utils.sendReset(getState, getState)
+                    }
+                }
+            ]
+        }
+        ]);
 
     function resetMoves() {
         moves = []

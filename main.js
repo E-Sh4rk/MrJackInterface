@@ -1,8 +1,34 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, dialog } = require('electron')
 
 // Gardez une reference globale de l'objet window, si vous ne le faites pas, la fenetre sera
 // fermee automatiquement quand l'objet JavaScript sera garbage collected.
 let win
+
+// Set global function
+global.SetMenu = function(template){
+  template.splice(0, 0,
+    {
+      label:'File',
+      submenu: [
+        {
+          label:'Open inspector',
+          click() { 
+            win.webContents.openDevTools()
+          }
+        },
+        {
+          label:'Exit',
+          click() { 
+            app.quit()
+          }
+        }
+      ]
+    }
+  )
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}
+global.showSaveDialogSync = dialog.showSaveDialogSync
+global.showOpenDialogSync = dialog.showOpenDialogSync
 
 function createWindow () {
   // Créer le browser window.
