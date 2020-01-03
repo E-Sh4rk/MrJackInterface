@@ -336,7 +336,13 @@ function sendLoad(filename, success_callback, failure_callback) {
 }
 
 function sendAI(success_callback, failure_callback) {
-    console.error ("AI not implemented")
+    function callback(response) {
+        if (response.status == 0)
+            success_callback(response.description)
+        else
+            failure_callback(response.status)
+    }
+    sendCommand("play ai", callback)
 }
 
 module.exports = {

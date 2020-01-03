@@ -269,7 +269,8 @@ function init() {
             fontSize: 20,
             onTap: function () {
                 if (ai_play)
-                    utils.sendAI(getState, function (code, msg) { getState(); alert("Error: " + msg); })
+                    utils.sendAI(function (descr) { getState(); alert("Move played: " + descr); },
+                                 function (code, msg) { getState(); alert("Error: " + msg); })
                 else
                     utils.sendMoves(game.status, moves, jwld, selectedCards, selectedCard,
                         getState,
