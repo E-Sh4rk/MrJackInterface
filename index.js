@@ -1,5 +1,5 @@
 
-var { item, character, character_status, status, move_types } = require('./defs');
+var { item, character, status, move_types } = require('./defs');
 
 let empty = { i:item.EMPTY, c:null, visible:false }
 let none = { i:item.NONE, c:null, visible:false }
@@ -52,6 +52,21 @@ function init() {
         {
             label: 'Game',
             submenu: [
+                {
+                    label:'Show detective POV',
+                    click() {
+                        utils.detectivePOV()
+                        getState()
+                    }
+                },
+                {
+                    label:'Show common knowledge POV',
+                    click() {
+                        utils.commonPOV()
+                        getState()
+                    }
+                },
+                {type:'separator'},
                 {
                     label:'Save',
                     click() {
@@ -129,16 +144,12 @@ function init() {
         textContainer.removeChildren()
         panelContainer.removeChildren()
     }
-    function colorForCharacterStatus(cs, visible) {
-        switch (cs) {
-            case character_status.UNKNOWN:
-                return visible ? 0xfaae34 : 0x8f631d
-            case character_status.GUILTY:
-                return visible ? 0xed2828 : 0x851c1c
-            case character_status.INNOCENT_CK:
-            case character_status.INNOCENT_HI:
-                return visible ? 0x00ab14 : 0x006e0d
-        }
+    function colorForCharacterStatus(innocent, visible) {
+        if (innocent)
+            return visible ? 0x00ab14 : 0x006e0d
+        else
+            return visible ? 0xfaae34 : 0x8f631d
+        // Guilty :    visible ? 0xed2828 : 0x851c1c
     }
 
     width = game.board[0].length
@@ -337,7 +348,7 @@ function init() {
             }
             if (m.c != null || m.it != null) {
                 let text = m.c != null ? m.c : m.it;
-                let color = m.c != null && !displayVisibility ? colorForCharacterStatus(m.cs, m.cv) : 0x222222;
+                let color = m.c != null && !displayVisibility ? colorForCharacterStatus(m.cinnocent, m.cv) : 0x222222;
                 text = new PIXI.Text(text, {fontFamily : 'Arial', fontSize: 18, fill : color, align : 'center'});
                 text.x = (point.x+hex.width()/2)*wr - text.width/2;
                 text.y = (point.y+hex.height()/2)*hr - text.height/2;

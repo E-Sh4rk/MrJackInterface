@@ -35,12 +35,5 @@ module.exports = {
         JACK_ESCAPED: "JACK_ESCAPED",
         JACK_CAPTURED: "JACK_CAPTURED",
         TIMEOUT: "TIMEOUT"
-    },
-
-    character_status: {
-        UNKNOWN: "UNKNOWN",
-        GUILTY: "GUILTY",
-        INNOCENT_CK: "INNOCENT_CK",
-        INNOCENT_HI: "INNOCENT_HI"
     }
 }

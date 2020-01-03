@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { item, character, character_status, status, move_types } = require('./defs');
+var { item, character, move_types } = require('./defs');
 
 const StringBuilder = require("string-builder");
 
@@ -93,6 +93,13 @@ function codeFromCharacter(c) {
 
 /*const MATRIX_WIDTH = 17
 const MATRIX_HEIGHT = 13*/
+let innocent_pov = "innocent_ck"
+function detectivePOV() {
+    innocent_pov = "innocent_hi"
+}
+function commonPOV() {
+    innocent_pov = "innocent_ck"
+}
 function parseGameConfig(config) {
     // Give a proper shape to the array, and transpose the resulting matrix
     /*let matrix = []
@@ -128,10 +135,10 @@ function parseGameConfig(config) {
             }
             let item = tile2item(elt.type, elt.activated)
             let character = characterFromCode(elt.character)
-            let char_status = character != null ? config.cstatus[elt.character] : null
+            let char_innocent = character != null ? config[innocent_pov][elt.character] : null
             let char_visible = character != null ? config.visible[elt.character] : null
             let it = elt.lampid == 0 ? null : elt.lampid.toString()
-            line.push( {i:item, c:character, it:it, cs:char_status, cv:char_visible, visible:visible} )
+            line.push( {i:item, c:character, it:it, cinnocent:char_innocent, cv:char_visible, visible:visible} )
         }
         board.push(line)
     }
@@ -354,5 +361,7 @@ module.exports = {
     sendReset: sendReset,
     sendLoad: sendLoad,
     sendSave: sendSave,
-    sendAI: sendAI
+    sendAI: sendAI,
+    detectivePOV: detectivePOV,
+    commonPOV: commonPOV
 }
